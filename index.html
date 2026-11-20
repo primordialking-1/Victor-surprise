@@ -1,0 +1,485 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Birthday Surprise ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: auto;
+}
+
+body {
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg, #ffe0eb, #fff0f5, #fbd0df);
+    color: #74354d;
+    overflow-x: hidden;
+}
+
+/* INTRO SCREEN */
+.intro {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    text-align: center;
+}
+
+.intro h2 {
+    margin-bottom: 40px;
+    font-size: 27px;
+    color: #a83e65;
+}
+
+/* BIRTHDAY CARD */
+.birthday-card {
+    width: 290px;
+    height: 390px;
+    position: relative;
+    background: linear-gradient(145deg, #fff8fb, #ffc5d8);
+    border: 3px solid #e88ba8;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(160,60,100,0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: float 3s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.birthday-card::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 2px dashed #e88ba8;
+    border-radius: 13px;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(1deg);
+    }
+}
+
+.card-decoration {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 34px;
+    color: #d94d7b;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.card-subtitle {
+    margin-top: 15px;
+    font-size: 17px;
+    color: #9c4564;
+}
+
+.card-cake {
+    font-size: 65px;
+    margin-top: 20px;
+}
+
+/* GLOWING HEART */
+.heart {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 48px;
+    cursor: pointer;
+    animation: glow 1.3s infinite alternate;
+    filter: drop-shadow(0 0 10px #ff1744);
+    z-index: 3;
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 5px #ff1744);
+        transform: translateX(-50%) scale(1);
+    }
+
+    to {
+        filter: drop-shadow(0 0 25px #ff1744);
+        transform: translateX(-50%) scale(1.25);
+    }
+}
+
+.hint {
+    margin-top: 35px;
+    font-size: 17px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* LETTER SECTION */
+#letterSection {
+    display: none;
+    padding: 60px 20px;
+    min-height: 100vh;
+    text-align: center;
+    animation: appear 1.5s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.envelope {
+    max-width: 650px;
+    margin: auto;
+    background: #fffafc;
+    padding: 35px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(160,60,100,0.15);
+}
+
+.envelope h1 {
+    color: #e75480;
+    margin-bottom: 15px;
+    font-size: 30px;
+}
+
+.subtitle {
+    margin-bottom: 35px;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+/* VERTICAL PHOTO SECTION */
+.photos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 45px;
+    margin: 35px 0;
+}
+
+.photo-card {
+    width: 100%;
+    max-width: 350px;
+    background: #fff0f5;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(180,70,110,0.12);
+}
+
+.photo-caption {
+    width: 100%;
+    min-height: 75px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #e88ba8;
+    border-radius: 12px;
+    background: #fffafc;
+    color: #74354d;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    text-align: center;
+    outline: none;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.photo-caption::placeholder {
+    color: #c47b96;
+    font-style: italic;
+}
+
+.photo-box {
+    width: 100%;
+    height: 350px;
+    border: 2px dashed #e88ba8;
+    border-radius: 15px;
+    background: #fffafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* IMAGE AND VIDEO DISPLAY FIX */
+.photo-box img,
+.photo-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-box input {
+    display: none;
+}
+
+/* PERSONAL LETTER */
+.letter {
+    margin-top: 35px;
+    padding: 30px 20px;
+    background: #fff0f5;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.9;
+    font-size: 17px;
+    min-height: 350px;
+    scroll-margin-top: 25px;
+}
+
+.letter h2 {
+    text-align: center;
+    color: #e75480;
+    margin-bottom: 25px;
+}
+
+.letter-content {
+    outline: none;
+    min-height: 250px;
+    white-space: pre-wrap;
+}
+
+.signature {
+    margin-top: 30px;
+    color: #e75480;
+    font-style: italic;
+    text-align: right;
+}
+
+footer {
+    padding: 30px;
+    text-align: center;
+    color: #bd577a;
+}
+
+/* MOBILE */
+@media(max-width: 500px) {
+    .intro h2 {
+        font-size: 22px;
+    }
+
+    .birthday-card {
+        width: 260px;
+        height: 360px;
+    }
+
+    .card-title {
+        font-size: 30px;
+    }
+
+    .envelope {
+        padding: 25px 15px;
+    }
+
+    .photo-card {
+        max-width: 320px;
+    }
+
+    .photo-box {
+        height: 350px;
+    }
+
+    .letter {
+        padding: 25px 15px;
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BIRTHDAY CARD INTRO -->
+<section class="intro" id="intro">
+
+    <h2>A Little Surprise For You ❤️</h2>
+
+    <div class="birthday-card">
+
+        <div class="card-decoration">✨ 🎀 ✨</div>
+
+        <div class="card-title">
+            Happy<br>Birthday!
+        </div>
+
+        <p class="card-subtitle">
+            A special day for someone special
+        </p>
+
+        <div class="card-cake">🎂</div>
+
+        <span class="heart" onclick="openLetter()">
+            ❤️
+        </span>
+
+    </div>
+
+    <p class="hint">Tap the glowing heart to open your surprise ❤️</p>
+
+</section>
+
+
+<!-- MAIN LETTER -->
+<section id="letterSection">
+
+    <div class="envelope">
+
+        <h1>HAPPY BIRTHDAY MY LOVE ❤️</h1>
+
+        <p class="subtitle">
+            A little collection of memories and words from my heart.
+        </p>
+
+        <!-- PHOTO 1 -->
+        <div class="photos">
+
+            <div class="photo-card">
+
+                <p class="photo-caption">
+                    Every moment with you is special. i hope
+                this new age brings you peace, favour and joy.
+                </p>
+
+                <div class="photo-box">
+                    <img src="img1.jpg" alt="Memory photo 1">
+                </div>
+
+            </div>
+
+            <!-- PHOTO 2 -->
+            <div class="photo-card">
+
+                <p class="photo-caption">
+                    Our first picture together. We took the picture because
+                    we both wore black and coincidentally this day marked our anniversary
+                    together.
+                </p>
+
+                <label class="photo-box">
+                    <img src="img2.jpg" alt="Memory photo 2">
+                </label>
+
+            </div>
+
+            <!-- VIDEO 3 -->
+            <div class="photo-card">
+
+                <p class="photo-caption">
+                    I LOVE YOU ❤️
+                </p>
+
+                <label class="photo-box">
+                    <video controls autoplay muted loop playsinline>
+                        <source src="vic.mp4" type="video/mp4">
+                    </video>
+                </label>
+
+            </div>
+
+        </div>
+
+        <!-- PERSONAL LETTER -->
+        <div class="letter" id="letter">
+
+            <h2>My Letter To You 💌</h2>
+
+            <div class="letter-content"
+            contenteditable="true"
+            spellcheck="true">
+Dear Obehi ❤️,
+
+        My One ❤️, I celebrate you on this special day, its been quite a 
+        splendid journey with you from seeing you in the church, to perfoming
+        on stage(Drama), to singing as well and most especially spending 
+        quality time together. I am so happy to have you in my life, you mean 
+        everything to me, I love you so much, words are failing me, omo what 
+        a reasonable bunch, I'm very happy and proud not just because of who
+        you are but the woman you are becoming. Keep soaring My Love, God 
+        sees you, I see you and I love you, cheers to this new age❤️.
+            </div>
+
+            <div class="signature">
+                With love Victor ❤️
+            </div>
+
+        </div>
+
+    </div>
+
+    <div>
+        <audio id="bgAudio" controls loop preload="auto">
+            <source src="birthday-message.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <footer>
+        Made by Victor ❤️ just for you.
+    </footer>
+
+</section>
+
+
+<script>
+
+// OPEN BIRTHDAY SURPRISE
+function openLetter() {
+
+    const section = document.getElementById("letterSection");
+
+    if (section.style.display === "block") return;
+
+    section.style.display = "block";
+
+    document.getElementById("intro").style.display = "none";
+
+    // Start the audio (allowed because the heart was tapped)
+    const audio = document.getElementById("bgAudio");
+    if (audio) audio.play().catch(() => {});
+
+    // setTimeout(() => {
+
+    //     const letter = document.getElementById("letter");
+
+    //     letter.scrollIntoView({
+    //         behavior: "auto",
+    //         block: "start"
+    //     });
+
+    // }, 0);
+}
+
+</script>
+
+</body>
+</html>
